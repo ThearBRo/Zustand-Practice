@@ -32,3 +32,41 @@ const useTodoState = create<TodoState>((set) => ({
 }));
 
 export default useTodoState;
+
+
+
+//////// 2 Arrays or more //////////
+
+interface eat {
+  id: number;
+  text: string;
+  completed: boolean;
+}
+
+interface drink {
+  id: number;
+  text: string;
+  completed: boolean;
+}
+
+interface EatAndDrinkState {
+  eats: eat[];
+  drinks: drink[];
+  addEatAndDrink: (text: string) => void;
+  deleteEatAndDrink: (id: number) => void;
+}
+
+export const useEatAndDrinkState = create<EatAndDrinkState>((set) => ({
+  eats: [],
+  drinks: [],
+  addEatAndDrink: (text) =>
+    set((state) => ({
+      eats: [...state.eats, { text, id: Date.now(), completed: false }],
+      drinks: [...state.drinks, { text, id: Date.now(), completed: false }],
+    })),
+  deleteEatAndDrink: (id) =>
+    set((state) => ({
+      eats: state.eats.filter((eats) => eats.id != id),
+      drinks: state.drinks.filter((drinks) => drinks.id != id),
+    })),
+}));
