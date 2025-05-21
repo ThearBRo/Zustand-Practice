@@ -1,8 +1,7 @@
 import { create } from "zustand";
-import axios from "axios";
 
-export const productStore = create((set) => ({
-  product: {},
+const productStore = create((set) => ({
+  product: [],
   isLoading: false,
   error: null,
 
@@ -12,8 +11,8 @@ export const productStore = create((set) => ({
 
     try {
       // Perform your async API call
-      await axios
-        .get("")
+      console.log("Api");
+      await fetch("http://127.0.0.1:5000/json")
         .then((res) => res.json())
         .then((data) => set({ product: data }));
     } catch (error) {
@@ -24,3 +23,5 @@ export const productStore = create((set) => ({
     }
   },
 }));
+
+export default productStore;
