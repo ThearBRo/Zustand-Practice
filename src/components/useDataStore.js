@@ -2,6 +2,9 @@ import { create } from "zustand";
 
 const productStore = create((set) => ({
   product: [],
+
+  // or more than data fetching
+  // price: [], comment: [], user: [], books:[]
   isLoading: false,
   error: null,
 
