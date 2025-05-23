@@ -2,7 +2,7 @@ import { create } from "zustand";
 import axios from "axios";
 
 const gameStore = create((set) => ({
-  games: [],
+  games: [], // Fantasys:[], SI-Fi: [] , or Horrors[] 
   isLoading: false,
   error: null,
 
