@@ -23,3 +23,26 @@ export const useRecipeStore = create<RecipeStore>((set) => ({
       recipes: state.recipes.filter((recipe) => recipe.id != id),
     })),
 }));
+
+
+// 2 practical 
+
+interface Game {
+  id: number;
+  name: string;
+  type: string[];
+  instruction: string;
+}
+
+interface GameStore {
+  games: Game[];
+  addGame: (game: Game) => void;
+  removeGame: (id: number) => void;
+}
+
+export const useGameStore = create<GameStore>((set) => ({
+  games: [],
+  addGame: (game) => set((state) => ({ games: [...state.games, game] })),
+  removeGame: (id) =>
+    set((state) => ({ games: state.games.filter((game) => game.id != id) })),
+}));
