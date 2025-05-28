@@ -24,14 +24,13 @@ export const useRecipeStore = create<RecipeStore>((set) => ({
     })),
 }));
 
-
-// 2 practical 
+// 2 practical
 
 interface Game {
   id: number;
-  name: string;
-  type: string[];
-  instruction: string;
+  game: string;
+  genre: string[];
+  country: string;
 }
 
 interface GameStore {
@@ -45,4 +44,51 @@ export const useGameStore = create<GameStore>((set) => ({
   addGame: (game) => set((state) => ({ games: [...state.games, game] })),
   removeGame: (id) =>
     set((state) => ({ games: state.games.filter((game) => game.id != id) })),
+}));
+
+//==== Double Todo List ====//
+
+interface DoubleTodo {
+  id: number;
+  title: string;
+  tasks: string[];
+  deadline: string;
+}
+
+interface DoubleTodoStore {
+  doubles: DoubleTodo[];
+  addTodo: (todo: DoubleTodo) => void;
+  removeTodo: (id: number) => void;
+}
+
+export const useDoubleTodoStore = create<DoubleTodoStore>((set) => ({
+  doubles: [],
+  addTodo: (double) =>
+    set((state) => ({ doubles: [...state.doubles, double] })),
+  removeTodo: (id) =>
+    set((state) => ({
+      doubles: state.doubles.filter((double) => double.id != id),
+    })),
+}));
+
+//==== Tip and Trick to ace our day ====//
+
+interface Tip {
+  id: number;
+  tip: string[];
+}
+
+interface TipStore {
+  allTips: Tip[];
+  addTip: (tip: Tip) => void;
+  removeTip: (id: number) => void;
+}
+
+export const useTipStore = create<TipStore>((set) => ({
+  allTips: [],
+  addTip: (tip) => set((state) => ({ allTips: [...state.allTips, tip] })),
+  removeTip: (id) =>
+    set((state) => ({
+      allTips: state.allTips.filter((tip) => tip.id != id),
+    })),
 }));
