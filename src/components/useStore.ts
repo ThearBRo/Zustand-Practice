@@ -72,6 +72,8 @@ export const useDoubleTodoStore = create<DoubleTodoStore>((set) => ({
 }));
 
 //==== Tip and Trick to ace our day ====//
+//==== On going with the Tip and Double ====//
+
 
 interface Tip {
   id: number;
@@ -92,3 +94,6 @@ export const useTipStore = create<TipStore>((set) => ({
       allTips: state.allTips.filter((tip) => tip.id != id),
     })),
 }));
+
+//==== Creating Advice app ====//
+
