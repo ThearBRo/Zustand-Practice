@@ -121,3 +121,66 @@ export const useExpenseStore = create<ExpenseStore>((set) => ({
       expenses: state.expenses.filter((expense) => expense.id != id),
     })),
 }));
+
+
+///////////////////////////////////////
+//==== The Password Generator 🔑====//
+//////////////////////////////////////
+
+type PasswordState = {
+  length: number;
+  includeNumbers: boolean;
+  includeSymbles: boolean;
+  includeUppers: boolean;
+  includeLowers: boolean;
+  generatedPassword: string;
+  setLength: (length: number) => void;
+  toggleNumbers: () => void;
+  toggleSymbles: () => void;
+  toggleUppers: () => void;
+  toggleLowers: () => void;
+  generatePassword: () => void;
+};
+
+const usePasswordStore = create<PasswordState>((set) => ({
+  length: 12,
+  includeNumbers: true,
+  includeSymbles: false,
+  includeUppers: true,
+  includeLowers: true,
+  generatedPassword: "",
+
+  setLength: (length) => set({ length }),
+  toggleNumbers: () =>
+    set((state) => ({ includeNumbers: !state.includeNumbers })),
+  toggleSymbles: () =>
+    set((state) => ({ includeSymbles: !state.includeSymbles })),
+  toggleUppers: () => set((state) => ({ includeUppers: !state.includeUppers })),
+  toggleLowers: () => set((state) => ({ includeLowers: !state.includeLowers })),
+
+  generatePassword: () =>
+    set((state) => {
+      const numbers = "0123456789";
+      const symbles = "!@#$%^&*()_+{}[]";
+      const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const lowercase = "abcdefghijklmnopqrstuvwxyz";
+
+      let characters = "";
+
+      if (state.includeNumbers) characters += numbers;
+      if (state.includeSymbles) characters += symbles;
+      if (state.includeUppers) characters += uppercase;
+      if (state.includeLowers) characters += lowercase;
+
+      let password = "";
+
+      for (let i = 0; i < state.length; i++) {
+        password += characters[Math.floor(Math.random() * characters.length)];
+      }
+
+      return { generatedPassword: password };
+    }),
+}));
+
+export default usePasswordStore;
+
