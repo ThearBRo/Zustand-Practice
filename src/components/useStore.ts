@@ -208,3 +208,28 @@ export const useFoodFactStore = create<FoodFact>((set) => ({
   },
 }));
 
+
+
+///////////////////////
+//==== Todo Fact ====//
+///////////////////////
+
+interface TodoFact {
+  foods: any[];
+  loading: boolean;
+  error: string | null;
+  fetchData: () => void;
+}
+
+export const useTodoFact = create<TodoFact>((set) => ({
+  foods: [],
+  loading: false,
+  error: null,
+  fetchData: async () => {
+    set({ loading: true, error: null });
+    await fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((res) => res.json())
+      .then((foods) => set({ foods, loading: false }))
+      .catch((err) => set({ error: err.message, loading: false }));
+  },
+}));
