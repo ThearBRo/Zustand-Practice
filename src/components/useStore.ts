@@ -233,3 +233,42 @@ export const useTodoFact = create<TodoFact>((set) => ({
       .catch((err) => set({ error: err.message, loading: false }));
   },
 }));
+
+
+/////////////////////////
+//==== 2 interface ====//
+/////////////////////////
+
+
+
+interface Advice {
+  id: number;
+  advices: string;
+}
+
+interface Ideas {
+  id: number;
+  ideas: string;
+}
+
+interface Crud {
+  advices: Advice[];
+  ideas: Ideas[];
+  addAdvice: (advice: Advice) => void;
+  addIdeas: (idea: Ideas) => void;
+  createDate: () => void;
+}
+
+export const useCrudStore = create<Crud>((set) => ({
+  advices: [],
+  ideas: [],
+  addAdvice: (advice) => {},
+  addIdeas: (idea) => {},
+  createDate: () => {
+    axios
+      .post("http://127.0.0.1:3000/api/post")
+      .then(() => window.location.reload())
+      .catch((err) => console.log(err));
+  },
+}));
+
