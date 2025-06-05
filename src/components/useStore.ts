@@ -296,3 +296,54 @@ export const useMealStore = create<MealStore>((set) => ({
   setMeals: (meals: Meal[]) => set({ meals }),
   setSearchQuery: (query: string) => set({ searchQuery: query }),
 }));
+
+
+
+////////////////////////////
+//==== Search Query 2 ====//
+////////////////////////////
+
+interface Categories {
+  idCategory: string;
+  strCategory: string;
+  strCategoryThumb: string;
+  strCategoryDescription: string;
+}
+
+interface CategoriesStore {
+  categories: Categories[];
+  searchQuery: string;
+  setCate: (categorys: Categories[]) => void;
+  setSearchQuery: (query: string) => void;
+}
+
+export const useCategoriesStore = create<CategoriesStore>((set) => ({
+  categories: [],
+  searchQuery: "",
+  setCate: (categories: Categories[]) => set({ categories }),
+  setSearchQuery: (query: string) => set({ searchQuery: query }),
+}));
+
+////////////////////////////
+//==== Search Query 3 ====//
+////////////////////////////
+
+interface MealData {
+  strMeal: string;
+  strMealThumb: string;
+  idMeal: string;
+}
+
+interface MealDataStore {
+  meals: MealData[];
+  searchQuery: string;
+  setMeals: (meals: MealData[]) => void;
+  setSearchQuery: (query: string) => void;
+}
+
+export const useMealDataStore = create<MealDataStore>((set) => ({
+  meals: [],
+  searchQuery: "",
+  setMeals: (meals: MealData[]) => set({ meals }),
+  setSearchQuery: (query: string) => set({ searchQuery: query }),
+}));
