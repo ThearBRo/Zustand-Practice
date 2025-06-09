@@ -347,3 +347,22 @@ export const useMealDataStore = create<MealDataStore>((set) => ({
   setMeals: (meals: MealData[]) => set({ meals }),
   setSearchQuery: (query: string) => set({ searchQuery: query }),
 }));
+
+
+
+interface TodoList {
+  _id: string;
+  task: string;
+  status: string;
+  deadline: Date;
+}
+
+interface TodoListStore {
+  todolists: TodoList[];
+  setTodolists: (todolists: TodoList[]) => void;
+}
+
+export const useTodoListStore = create<TodoListStore>((set) => ({
+  todolists: [],
+  setTodolists: (todolists: TodoList[]) => set({ todolists }),
+}));
